@@ -40,7 +40,7 @@ namespace WinForm
 
             // portSelector
             this.portSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.portSelector.Font = new System.Drawing.Font("MS UI Gothic", 14F);
+            this.portSelector.Font = new System.Drawing.Font("MS UI Gothic", 20F);
             this.portSelector.FormattingEnabled = true;
             this.portSelector.Location = new System.Drawing.Point(50, 10);
             this.portSelector.Name = "portSelector";
@@ -48,10 +48,10 @@ namespace WinForm
             this.portSelector.TabIndex = 0;
 
             // connectBtn
-            this.connectBtn.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.connectBtn.Location = new System.Drawing.Point(50, 55);
+            this.connectBtn.Font = new System.Drawing.Font("MS UI Gothic", 18F);
+            this.connectBtn.Location = new System.Drawing.Point(50, 60);
             this.connectBtn.Name = "connectBtn";
-            this.connectBtn.Size = new System.Drawing.Size(700, 35);
+            this.connectBtn.Size = new System.Drawing.Size(700, 50);
             this.connectBtn.TabIndex = 1;
             this.connectBtn.Text = "connect";
             this.connectBtn.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@ namespace WinForm
 
             // sendButton1
             this.sendButton1.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton1.Location = new System.Drawing.Point(90, 100);
+            this.sendButton1.Location = new System.Drawing.Point(90, 120);
             this.sendButton1.Name = "sendButton1";
             this.sendButton1.Size = new System.Drawing.Size(180, 80);
             this.sendButton1.TabIndex = 2;
@@ -69,7 +69,7 @@ namespace WinForm
 
             // sendButton2
             this.sendButton2.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton2.Location = new System.Drawing.Point(310, 100);
+            this.sendButton2.Location = new System.Drawing.Point(310, 120);
             this.sendButton2.Name = "sendButton2";
             this.sendButton2.Size = new System.Drawing.Size(180, 80);
             this.sendButton2.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace WinForm
 
             // sendButton3
             this.sendButton3.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton3.Location = new System.Drawing.Point(530, 100);
+            this.sendButton3.Location = new System.Drawing.Point(530, 120);
             this.sendButton3.Name = "sendButton3";
             this.sendButton3.Size = new System.Drawing.Size(180, 80);
             this.sendButton3.TabIndex = 4;
@@ -89,7 +89,7 @@ namespace WinForm
 
             // sendButton4
             this.sendButton4.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton4.Location = new System.Drawing.Point(90, 190);
+            this.sendButton4.Location = new System.Drawing.Point(90, 210);
             this.sendButton4.Name = "sendButton4";
             this.sendButton4.Size = new System.Drawing.Size(180, 80);
             this.sendButton4.TabIndex = 5;
@@ -99,7 +99,7 @@ namespace WinForm
 
             // sendButton5
             this.sendButton5.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton5.Location = new System.Drawing.Point(310, 190);
+            this.sendButton5.Location = new System.Drawing.Point(310, 210);
             this.sendButton5.Name = "sendButton5";
             this.sendButton5.Size = new System.Drawing.Size(180, 80);
             this.sendButton5.TabIndex = 6;
@@ -109,7 +109,7 @@ namespace WinForm
 
             // sendButton6
             this.sendButton6.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.sendButton6.Location = new System.Drawing.Point(530, 190);
+            this.sendButton6.Location = new System.Drawing.Point(530, 210);
             this.sendButton6.Name = "sendButton6";
             this.sendButton6.Size = new System.Drawing.Size(180, 80);
             this.sendButton6.TabIndex = 7;
