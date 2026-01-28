@@ -43,6 +43,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <PackageReference Include="System.IO.Ports" Version="10.0.2" />
   </ItemGroup>

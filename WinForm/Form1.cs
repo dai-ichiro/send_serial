@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Management;
+using System.Text.RegularExpressions;
 
 namespace WinForm
 {
@@ -15,10 +17,76 @@ namespace WinForm
     {
         private SerialPort serialPort = null;
 
+        private class PortInfo
+        {
+            public string PortName { get; set; }
+            public string Description { get; set; }
+
+            public override string ToString()
+            {
+                if (!string.IsNullOrEmpty(Description))
+                {
+                    return $"{PortName} ({Description})";
+                }
+                return PortName;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
             LoadAvailablePorts();
+        }
+
+        /// <summary>
+        /// 詳細なポート情報を取得します
+        /// </summary>
+        private List<PortInfo> GetDetailedPortInfo()
+        {
+            var portInfos = new List<PortInfo>();
+            try
+            {
+                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE ConfigManagerErrorCode = 0"))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        object nameObj = obj["Name"];
+                        if (nameObj != null)
+                        {
+                            string name = nameObj.ToString();
+                            if (name.Contains("(COM"))
+                            {
+                                Match match = Regex.Match(name, @"\((?<portName>COM\d+)\)");
+                                if (match.Success)
+                                {
+                                    string portName = match.Groups["portName"].Value;
+                                    portInfos.Add(new PortInfo
+                                    {
+                                        PortName = portName,
+                                        Description = name
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WMIエラー時は無視
+            }
+
+            // Fallback & Merge: 既存のGetPortNamesで取得できるがWMIで見つからなかったポートを追加
+            string[] basicPorts = SerialPort.GetPortNames();
+            foreach (string port in basicPorts)
+            {
+                if (!portInfos.Any(p => p.PortName == port))
+                {
+                    portInfos.Add(new PortInfo { PortName = port, Description = "" });
+                }
+            }
+
+            return portInfos.OrderBy(p => p.PortName).ToList();
         }
 
         /// <summary>
@@ -28,10 +96,10 @@ namespace WinForm
         {
             try
             {
-                string[] ports = SerialPort.GetPortNames();
+                List<PortInfo> ports = GetDetailedPortInfo();
                 portSelector.Items.Clear();
 
-                foreach (string port in ports)
+                foreach (PortInfo port in ports)
                 {
                     portSelector.Items.Add(port);
                 }
@@ -63,7 +131,15 @@ namespace WinForm
                     return;
                 }
 
-                string selectedPort = portSelector.SelectedItem.ToString();
+                string selectedPort;
+                if (portSelector.SelectedItem is PortInfo portInfo)
+                {
+                    selectedPort = portInfo.PortName;
+                }
+                else
+                {
+                    selectedPort = portSelector.SelectedItem.ToString();
+                }
 
                 // SerialPortインスタンスの作成と設定
                 serialPort = new SerialPort(selectedPort);
